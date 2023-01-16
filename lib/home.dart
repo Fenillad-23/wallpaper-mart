@@ -29,8 +29,7 @@ class _HomeState extends State<Home> {
 
   fetchWallpapers() async {
     await http.get(
-        Uri.parse(
-            "https://api.pexels.com/v1/curated?per_page=$ImagesToLoad&page=1"),
+        Uri.parse("https://api.pexels.com/v1/curated?per_page=79&page=1"),
         headers: {"Authorization": API_KEY}).then((value) {
       wallpapers = jsonDecode(value.body);
       dataLoaded = true;
@@ -63,7 +62,7 @@ class _HomeState extends State<Home> {
                 ),
                 Flexible(
                   child: GridView.builder(
-                    // itemCount: wallpapers.length,
+                    itemCount: 79,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3, childAspectRatio: 0.7),
@@ -73,7 +72,7 @@ class _HomeState extends State<Home> {
                         child: Card(
                           child: CachedNetworkImage(
                             imageUrl: wallpapers['photos'][index]['src']
-                                    ['original']
+                                    ['portrait']
                                 .toString(),
                             placeholder: (context, url) => const Center(
                               child: GFLoader(
@@ -93,7 +92,7 @@ class _HomeState extends State<Home> {
                           //     }
                           //   },
                           //   wallpapers['photos'][index]['src']['original']
-                          //       .toString(),
+                          //       .toString(),ff
                           //   fit: BoxFit.contain,
                           // ),
                           //
