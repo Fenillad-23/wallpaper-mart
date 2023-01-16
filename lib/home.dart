@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:wallpaper_mart/reusable_widget.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:flutter_advanced_networkimage_2/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
     print('\x1b[93m --- $wallpapers');
   }
 
-  TextEditingController searchbarController = new TextEditingController();
+  TextEditingController searchbarController = TextEditingController();
 
   String API_KEY = "563492ad6f917000010000014df6eddfa02143fd9ceb352dc4e9ffa2";
   // static final customCacheManager = CacheManager(confi);
@@ -66,31 +66,38 @@ class _HomeState extends State<Home> {
                     // itemCount: wallpapers.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
+                            crossAxisCount: 3, childAspectRatio: 0.7),
                     itemBuilder: ((context, index) {
-                      return Card(
-                        child: Image.network(
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) {
-                              imgloaded = true;
+                      return SizedBox(
+                        height: 300,
+                        child: Card(
+                          child: CachedNetworkImage(
+                            imageUrl: wallpapers['photos'][index]['src']
+                                    ['original']
+                                .toString(),
+                            placeholder: (context, url) => const Center(
+                              child: GFLoader(
+                                type: GFLoaderType.ios,
+                              ),
+                            ),
+                          ),
+                          // child: Image.network(
+                          //   loadingBuilder: (context, child, loadingProgress) {
+                          //     if (loadingProgress == null) {
+                          //       imgloaded = true;
 
-                              return child;
-                            } else {
-                              imgloaded = false;
-                              return const Center(child: Text('Loading...'));
-                            }
-                          },
-                          wallpapers['photos'][index]['src']['original']
-                              .toString(),
-                          fit: BoxFit.fill,
+                          //       return child;
+                          //     } else {
+                          //       imgloaded = false;
+                          //       return const Center(child: Text('Loading...'));
+                          //     }
+                          //   },
+                          //   wallpapers['photos'][index]['src']['original']
+                          //       .toString(),
+                          //   fit: BoxFit.contain,
+                          // ),
+                          //
                         ),
-                        // child: CachedNetworkImage(
-                        //   imageUrl: wallpapers['photos'][index]['src']
-                        //           ['original']
-                        //       .toString(),
-                        //   key: UniqueKey(),
-                        // ),
                       );
                     }),
                   ),
