@@ -74,6 +74,7 @@ class _HomeState extends State<Home> {
                           loadingBuilder: (context, child, loadingProgress) {
                             if (loadingProgress == null) {
                               imgloaded = true;
+
                               return child;
                             } else {
                               imgloaded = false;
