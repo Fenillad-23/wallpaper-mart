@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:wallpaper_mart/networkHelper.dart';
 import 'package:wallpaper_mart/reusable_widget.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -36,6 +37,11 @@ class _HomeState extends State<Home> {
       setState(() {});
     });
     print('\x1b[93m --- $wallpapers');
+    demo();
+  }
+
+  demo() async {
+    NetworkHelper NH = new NetworkHelper();
   }
 
   TextEditingController searchbarController = TextEditingController();
