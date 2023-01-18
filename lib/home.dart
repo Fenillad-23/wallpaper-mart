@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:wallpaper_mart/imgPreview.dart';
 import 'package:wallpaper_mart/networkHelper.dart';
 import 'package:wallpaper_mart/reusable_widget.dart';
 import 'package:getwidget/getwidget.dart';
@@ -15,12 +16,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late Map<String, dynamic> wallpapers;
+  late List wallpapers;
+  int i = 1;
   bool dataLoaded = false;
   bool imgloaded = false;
-  // ignore: non_constant_identifier_names
+
   int ImagesToLoad = 200;
-  // late String wallpaperUrl, photographerName, photographerUrl;
 
   @override
   void initState() {
@@ -29,19 +30,19 @@ class _HomeState extends State<Home> {
   }
 
   fetchWallpapers() async {
-    await http.get(
-        Uri.parse("https://api.pexels.com/v1/curated?per_page=79&page=1"),
-        headers: {"Authorization": API_KEY}).then((value) {
-      wallpapers = jsonDecode(value.body);
+    dynamic response = await http.get(
+        Uri.parse("https://api.pexels.com/v1/curated?per_page=79&page=$i"),
+        headers: {"Authorization": API_KEY});
+    if (response.statusCode == 200 || response.statusCode == "200") {
+      Map<String, dynamic> mappedData = json.decode(response.body);
+      wallpapers = mappedData['photos'];
+      wallpapers.shuffle();
       dataLoaded = true;
-      setState(() {});
-    });
-    print('\x1b[93m --- $wallpapers');
-    demo();
-  }
-
-  demo() async {
-    NetworkHelper NH = new NetworkHelper();
+      setState(() {
+        i++;
+      });
+      print('\x1b[93m --- $wallpapers');
+    }
   }
 
   TextEditingController searchbarController = TextEditingController();
@@ -51,63 +52,73 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: Center(
-            child:
-                text("wallymart", 24, Colors.deepOrange, FontWeight.w700, 1)),
-      ),
-      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white.withOpacity(1),
       body: dataLoaded
-          ? Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: textField(Icons.search, "Search", searchbarController),
-                ),
-                Flexible(
-                  child: GridView.builder(
-                    itemCount: 79,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3, childAspectRatio: 0.7),
-                    itemBuilder: ((context, index) {
-                      return SizedBox(
-                        height: 300,
-                        child: Card(
-                          child: CachedNetworkImage(
-                            imageUrl: wallpapers['photos'][index]['src']
-                                    ['portrait']
-                                .toString(),
-                            placeholder: (context, url) => const Center(
-                              child: GFLoader(
-                                type: GFLoaderType.ios,
+          ? RefreshIndicator(
+              onRefresh: () {
+                return Future.delayed(Duration(milliseconds: 1500), () {
+                  setState(() {
+                    fetchWallpapers();
+                  });
+                });
+              },
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: textField(
+                          Icons.search, "Search", searchbarController),
+                    ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    Flexible(
+                      child: GridView.builder(
+                        itemCount: 79,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2, childAspectRatio: 0.7),
+                        itemBuilder: ((context, index) {
+                          return SizedBox(
+                            height: 300,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: ((context) => ImagePreview(
+                                        url: wallpapers[index]['src']
+                                            ['portrait'],
+                                        photographer: wallpapers[index]
+                                            ['photographer'])),
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag: wallpapers[index]['src']['original'],
+                                child: Card(
+                                  child: CachedNetworkImage(
+                                    imageUrl: wallpapers[index]['src']
+                                            ['portrait']
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => const Center(
+                                      child: GFLoader(
+                                        type: GFLoaderType.ios,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          // child: Image.network(
-                          //   loadingBuilder: (context, child, loadingProgress) {
-                          //     if (loadingProgress == null) {
-                          //       imgloaded = true;
-
-                          //       return child;
-                          //     } else {
-                          //       imgloaded = false;
-                          //       return const Center(child: Text('Loading...'));
-                          //     }
-                          //   },
-                          //   wallpapers['photos'][index]['src']['original']
-                          //       .toString(),ff
-                          //   fit: BoxFit.contain,
-                          // ),
-                          //
-                        ),
-                      );
-                    }),
-                  ),
-                )
-              ],
+                          );
+                        }),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             )
           : const Center(
               child: GFLoader(
