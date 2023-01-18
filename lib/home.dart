@@ -66,11 +66,11 @@ class _HomeState extends State<Home> {
               child: SafeArea(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: textField(
-                          Icons.search, "Search", searchbarController),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: textField(
+                    //       Icons.search, "Search", searchbarController),
+                    // ),
                     SizedBox(
                       height: 2,
                     ),

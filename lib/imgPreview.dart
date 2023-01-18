@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/components/loader/gf_loader.dart';
+import 'package:getwidget/types/gf_loader_type.dart';
 import 'package:wallpaper/wallpaper.dart';
 
 class ImagePreview extends StatefulWidget {
@@ -27,6 +29,11 @@ class _ImagePreviewState extends State<ImagePreview> {
             child: CachedNetworkImage(
               imageUrl: widget.url,
               fit: BoxFit.cover,
+              placeholder: (context, url) => const Center(
+                                      child: GFLoader(
+                                        type: GFLoaderType.ios,
+                                      ),
+                                    ),
             ),
           ),
         ),
