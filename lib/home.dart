@@ -1,10 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:wallpaper_mart/imgPreview.dart';
-import 'package:wallpaper_mart/networkHelper.dart';
-import 'package:wallpaper_mart/reusable_widget.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -20,9 +19,9 @@ class _HomeState extends State<Home> {
   int i = 1;
   bool dataLoaded = false;
   bool imgloaded = false;
-
+  String query = '';
   int ImagesToLoad = 200;
-
+  String API_KEY = "563492ad6f917000010000014df6eddfa02143fd9ceb352dc4e9ffa2";
   @override
   void initState() {
     super.initState();
@@ -45,10 +44,26 @@ class _HomeState extends State<Home> {
     }
   }
 
+  fetchCategoryWallpapers() async {
+    dataLoaded = false;
+    wallpapers.clear();
+    dynamic response = await http.get(
+        Uri.parse("https://api.pexels.com/v1/search?query=$query&per_page=79"),
+        headers: {"Authorization": API_KEY});
+    if (response.statusCode == 200 || response.statusCode == "200") {
+      Map<String, dynamic> mappedData = json.decode(response.body);
+      wallpapers = mappedData['photos'];
+      wallpapers.shuffle();
+      dataLoaded = true;
+      setState(() {
+        // i++;
+      });
+      print('\x1b[93m --- $wallpapers');
+    }
+  }
+
   TextEditingController searchbarController = TextEditingController();
 
-  String API_KEY = "563492ad6f917000010000014df6eddfa02143fd9ceb352dc4e9ffa2";
-  // static final customCacheManager = CacheManager(confi);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,23 +72,177 @@ class _HomeState extends State<Home> {
       body: dataLoaded
           ? RefreshIndicator(
               onRefresh: () {
-                return Future.delayed(Duration(milliseconds: 1500), () {
+                return Future.delayed(Duration(milliseconds: 2), () {
                   setState(() {
                     fetchWallpapers();
+                    query = '';
                   });
                 });
               },
               child: SafeArea(
                 child: Column(
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: textField(
-                    //       Icons.search, "Search", searchbarController),
-                    // ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('category',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w600)),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  query = 'person';
+                                });
+                                fetchCategoryWallpapers();
+                                print(query);
+                              },
+                              child: SizedBox(
+                                height: 90,
+                                width: 120,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset(
+                                        'assets/images/person.jpg',
+                                        fit: BoxFit.fill,
+                                        height: 90,
+                                        width: double.infinity),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  query = 'programming';
+                                });
+                                fetchCategoryWallpapers();
+
+                                print(query);
+                              },
+                              child: SizedBox(
+                                height: 90,
+                                width: 120,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset(
+                                        'assets/images/amoled.jpg',
+                                        fit: BoxFit.fill,
+                                        height: 90,
+                                        width: double.infinity),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  query = 'nature';
+                                });
+                                fetchCategoryWallpapers();
+                                print(query);
+                              },
+                              child: SizedBox(
+                                height: 90,
+                                width: 120,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset(
+                                      'assets/images/nature.jpg',
+                                      fit: BoxFit.fill,
+                                      height: 90,
+                                      width: double.infinity,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  query = 'cars';
+                                });
+                                fetchCategoryWallpapers();
+                                print(query);
+                              },
+                              child: SizedBox(
+                                height: 90,
+                                width: 120,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset('assets/images/cars.jpg',
+                                        fit: BoxFit.fill,
+                                        height: 90,
+                                        width: double.infinity),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  query = ' indian god';
+                                });
+                                fetchCategoryWallpapers();
+                                print(query);
+                              },
+                              child: SizedBox(
+                                height: 90,
+                                width: 120,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset('assets/images/god.jpg',
+                                        fit: BoxFit.fill,
+                                        height: 90,
+                                        width: double.infinity),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 2,
                     ),
+                    Row(children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('$query wallpapers',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w600)),
+                      )
+                    ]),
                     Flexible(
                       child: GridView.builder(
                         itemCount: 79,
@@ -96,16 +265,24 @@ class _HomeState extends State<Home> {
                                 );
                               },
                               child: Hero(
-                                tag: wallpapers[index]['src']['original'],
+                                tag: wallpapers[index]['src']['portrait'],
                                 child: Card(
-                                  child: CachedNetworkImage(
-                                    imageUrl: wallpapers[index]['src']
-                                            ['portrait']
-                                        .toString(),
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) => const Center(
-                                      child: GFLoader(
-                                        type: GFLoaderType.ios,
+                                  elevation: 0.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: CachedNetworkImage(
+                                      imageUrl: wallpapers[index]['src']
+                                              ['portrait']
+                                          .toString(),
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                        child: GFLoader(
+                                          type: GFLoaderType.ios,
+                                        ),
                                       ),
                                     ),
                                   ),
