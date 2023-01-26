@@ -37,6 +37,7 @@ dependencies:
   cached_network_image: ^3.2.3
   async_wallpaper: ^2.0.1
   fluttertoast: ^8.1.2
+  connectivity_checker:
 
 dev_dependencies:
   flutter_test:
