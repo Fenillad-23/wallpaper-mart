@@ -127,7 +127,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   flutter_advanced_networkimage_2:
     dependency: "direct main"
     description:
@@ -136,8 +135,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-=======
->>>>>>> 6c206be5b193c7e5ab2cc8133f0b3e1f11f65134
   flutter_blurhash:
     dependency: transitive
     description:
@@ -154,7 +151,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
-<<<<<<< HEAD
   flutter_svg:
     dependency: transitive
     description:
@@ -163,8 +159,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.6"
-=======
->>>>>>> 6c206be5b193c7e5ab2cc8133f0b3e1f11f65134
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -262,7 +256,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
-<<<<<<< HEAD
   path_drawing:
     dependency: transitive
     description:
@@ -279,8 +272,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-=======
->>>>>>> 6c206be5b193c7e5ab2cc8133f0b3e1f11f65134
   path_provider:
     dependency: transitive
     description:
@@ -337,7 +328,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
-<<<<<<< HEAD
   petitparser:
     dependency: transitive
     description:
@@ -346,8 +336,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
-=======
->>>>>>> 6c206be5b193c7e5ab2cc8133f0b3e1f11f65134
   platform:
     dependency: transitive
     description:
@@ -364,7 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
-<<<<<<< HEAD
   pool:
     dependency: transitive
     description:
@@ -373,8 +360,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-=======
->>>>>>> 6c206be5b193c7e5ab2cc8133f0b3e1f11f65134
   process:
     dependency: transitive
     description:
