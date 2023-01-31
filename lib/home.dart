@@ -94,16 +94,6 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w600)),
                           ),
-                          // SizedBox(
-                          //     width: MediaQuery.of(context).size.width / 2,
-                          //     child: TextFormField(
-                          //       controller: searchQuery,
-                          //       onFieldSubmitted: (value) {
-                          //         query = searchQuery.text;
-                          //         setState(() {});
-                          //         fetchWallpapers();
-                          //       },
-                          //     ))
                         ],
                       ),
                       SizedBox(

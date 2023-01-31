@@ -181,7 +181,10 @@ class _ImagePreviewState extends State<ImagePreview> {
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
-                                        leading: Icon(Icons.home_outlined),
+                                        leading: Icon(
+                                          Icons.home_outlined,
+                                          color: Colors.black,
+                                        ),
                                         title: Text('set to home screen'),
                                       ),
                                     ),
@@ -192,7 +195,10 @@ class _ImagePreviewState extends State<ImagePreview> {
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
-                                        leading: Icon(Icons.lock_outlined),
+                                        leading: Icon(
+                                          Icons.lock_outlined,
+                                          color: Colors.black,
+                                        ),
                                         title: Text('set to lock screen'),
                                       ),
                                     ),
@@ -203,7 +209,10 @@ class _ImagePreviewState extends State<ImagePreview> {
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
-                                        leading: Icon(Icons.wallpaper_outlined),
+                                        leading: Icon(
+                                          Icons.wallpaper_outlined,
+                                          color: Colors.black,
+                                        ),
                                         title: Text('set to both screen'),
                                       ),
                                     ),
@@ -222,28 +231,6 @@ class _ImagePreviewState extends State<ImagePreview> {
                 ),
               ),
             ),
-            // child: GestureDetector(
-            //   onTap: () {
-            //     setWallpaper(widget.url.toString());
-            //   },
-            //   child: Container(
-            //       height: 50,
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(20),
-            //         gradient: const LinearGradient(
-            //             begin: Alignment.topRight,
-            //             end: Alignment.bottomLeft,
-            //             colors: [
-            //               Color.fromARGB(199, 210, 77, 175),
-            //               Color.fromARGB(197, 203, 50, 8),
-            //             ]),
-            //       ),
-            //       child: const Center(
-            //           child: Text(
-            //         "set wallpaper",
-            //         style: TextStyle(color: Colors.white),
-            //       ))),
-            // ),
           )
         ],
       ),
