@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                           'assets/images/person.jpg',
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                           height: 90,
                                           width: double.infinity),
                                     ),
@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                           'assets/images/programming.jpg',
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                           height: 90,
                                           width: double.infinity),
                                     ),
@@ -174,7 +174,7 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                         'assets/images/nature.jpg',
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.cover,
                                         height: 90,
                                         width: double.infinity,
                                       ),
@@ -201,7 +201,7 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                           'assets/images/cars.jpg',
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                           height: 90,
                                           width: double.infinity),
                                     ),
@@ -227,7 +227,7 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                           'assets/images/god.jpg',
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                           height: 90,
                                           width: double.infinity),
                                     ),
