@@ -23,6 +23,7 @@ class _HomeState extends State<Home> {
   String query = '';
   int ImagesToLoad = 200;
   String API_KEY = "563492ad6f917000010000014df6eddfa02143fd9ceb352dc4e9ffa2";
+  TextEditingController searchQuery = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -85,13 +86,24 @@ class _HomeState extends State<Home> {
                   child: Column(
                     children: [
                       Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text('category',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w600)),
-                          )
+                          ),
+                          // SizedBox(
+                          //     width: MediaQuery.of(context).size.width / 2,
+                          //     child: TextFormField(
+                          //       controller: searchQuery,
+                          //       onFieldSubmitted: (value) {
+                          //         query = searchQuery.text;
+                          //         setState(() {});
+                          //         fetchWallpapers();
+                          //       },
+                          //     ))
                         ],
                       ),
                       SizedBox(
@@ -110,7 +122,7 @@ class _HomeState extends State<Home> {
                                 },
                                 child: SizedBox(
                                   height: 90,
-                                  width: 120,
+                                  width: 140,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
@@ -136,8 +148,8 @@ class _HomeState extends State<Home> {
                                   print(query);
                                 },
                                 child: SizedBox(
-                                  height: 90,
-                                  width: 120,
+                                  height: 95,
+                                  width: 140,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
@@ -145,7 +157,7 @@ class _HomeState extends State<Home> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
-                                          'assets/images/amoled.jpg',
+                                          'assets/images/programming.jpg',
                                           fit: BoxFit.fill,
                                           height: 90,
                                           width: double.infinity),
@@ -162,8 +174,8 @@ class _HomeState extends State<Home> {
                                   print(query);
                                 },
                                 child: SizedBox(
-                                  height: 90,
-                                  width: 120,
+                                  height: 95,
+                                  width: 140,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
@@ -189,8 +201,8 @@ class _HomeState extends State<Home> {
                                   print(query);
                                 },
                                 child: SizedBox(
-                                  height: 90,
-                                  width: 120,
+                                  height: 95,
+                                  width: 140,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
@@ -215,8 +227,8 @@ class _HomeState extends State<Home> {
                                   print(query);
                                 },
                                 child: SizedBox(
-                                  height: 90,
-                                  width: 120,
+                                  height: 95,
+                                  width: 140,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),

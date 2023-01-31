@@ -157,7 +157,7 @@ class _ImagePreviewState extends State<ImagePreview> {
                       context: context,
                       builder: (BuildContext contexr) {
                         return SizedBox(
-                          height: 170,
+                          height: 200,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -165,67 +165,50 @@ class _ImagePreviewState extends State<ImagePreview> {
                                 Align(
                                     alignment: Alignment.topCenter,
                                     child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                6,
-                                        child: Divider(
-                                          height: 10,
-                                          thickness: 4,
-                                          color: Colors.grey,
-                                        ))),
-                                ElevatedButton.icon(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent,
-                                        elevation: 0.0),
-                                    onPressed: () {
-                                      setWallpaper(widget.url.toString());
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(
-                                      Icons.add_to_home_screen,
-                                      color: Colors.blueGrey,
-                                    ),
-                                    label: Text(
-                                      'homescreen ',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.blueGrey),
+                                      width:
+                                          MediaQuery.of(context).size.width / 6,
+                                      child: Divider(
+                                        height: 10,
+                                        thickness: 4,
+                                        color: Colors.grey,
+                                      ),
                                     )),
-                                ElevatedButton.icon(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent,
-                                        elevation: 0.0),
-                                    onPressed: () {
-                                      setlockscreenWallpaper(
-                                          widget.url.toString());
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(
-                                      Icons.screen_lock_portrait_sharp,
-                                      color: Colors.blueGrey,
+                                Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setWallpaper(widget.url.toString());
+                                        Navigator.pop(context);
+                                      },
+                                      child: ListTile(
+                                        leading: Icon(Icons.home_outlined),
+                                        title: Text('set to home screen'),
+                                      ),
                                     ),
-                                    label: Text(
-                                      'lockscreen',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.blueGrey),
-                                    )),
-                                ElevatedButton.icon(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent,
-                                        elevation: 0.0),
-                                    onPressed: () {
-                                      setbothscreenWallpaper(
-                                          widget.url.toString());
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(
-                                      Icons.send_to_mobile_sharp,
-                                      color: Colors.blueGrey,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setlockscreenWallpaper(
+                                            widget.url.toString());
+                                        Navigator.pop(context);
+                                      },
+                                      child: ListTile(
+                                        leading: Icon(Icons.lock_outlined),
+                                        title: Text('set to lock screen'),
+                                      ),
                                     ),
-                                    label: Text(
-                                      'bothscreen',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.blueGrey),
-                                    )),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setbothscreenWallpaper(
+                                            widget.url.toString());
+                                        Navigator.pop(context);
+                                      },
+                                      child: ListTile(
+                                        leading: Icon(Icons.wallpaper_outlined),
+                                        title: Text('set to both screen'),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
