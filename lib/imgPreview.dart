@@ -105,22 +105,16 @@ class _ImagePreviewState extends State<ImagePreview> {
         children: [
           Hero(
             tag: widget.url,
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: CachedNetworkImage(
-                    imageUrl: widget.url,
-                    fit: BoxFit.fill,
-                    placeholder: (context, url) => const Center(
-                      child: GFLoader(
-                        type: GFLoaderType.ios,
-                      ),
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: ClipRRect(
+                child: CachedNetworkImage(
+                  imageUrl: widget.url,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => const Center(
+                    child: GFLoader(
+                      type: GFLoaderType.ios,
                     ),
                   ),
                 ),
@@ -132,30 +126,53 @@ class _ImagePreviewState extends State<ImagePreview> {
             left: 100,
             right: 100,
             bottom: 5,
-            child: SizedBox(
-              height: 30,
+            child: Container(
+              width: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(124, 46, 32, 199),
+                        Color.fromARGB(168, 72, 224, 216)
+                      ],
+                      tileMode: TileMode.clamp,
+                      begin: FractionalOffset.topLeft,
+                      end: FractionalOffset.bottomRight)),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: CircleBorder(),
-                ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 10,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
                 onPressed: () {
                   showModalBottomSheet(
-                      backgroundColor: Color.fromARGB(179, 0, 0, 0),
-                      // elevation: 0.0,
+                      backgroundColor: Colors.white,
+                      elevation: 0.0,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
                       )),
                       context: context,
                       builder: (BuildContext contexr) {
                         return SizedBox(
-                          height: 200,
+                          height: 170,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
+                                Align(
+                                    alignment: Alignment.topCenter,
+                                    child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                6,
+                                        child: Divider(
+                                          height: 10,
+                                          thickness: 4,
+                                          color: Colors.grey,
+                                        ))),
                                 ElevatedButton.icon(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent,
@@ -165,13 +182,13 @@ class _ImagePreviewState extends State<ImagePreview> {
                                       Navigator.pop(context);
                                     },
                                     icon: Icon(
-                                      Icons.wallpaper,
-                                      color: Colors.white,
+                                      Icons.add_to_home_screen,
+                                      color: Colors.blueGrey,
                                     ),
                                     label: Text(
-                                      'set to home',
+                                      'homescreen ',
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
+                                          fontSize: 20, color: Colors.blueGrey),
                                     )),
                                 ElevatedButton.icon(
                                     style: ElevatedButton.styleFrom(
@@ -183,13 +200,13 @@ class _ImagePreviewState extends State<ImagePreview> {
                                       Navigator.pop(context);
                                     },
                                     icon: Icon(
-                                      Icons.lock,
-                                      color: Colors.white,
+                                      Icons.screen_lock_portrait_sharp,
+                                      color: Colors.blueGrey,
                                     ),
                                     label: Text(
-                                      'set to Lock',
+                                      'lockscreen',
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
+                                          fontSize: 20, color: Colors.blueGrey),
                                     )),
                                 ElevatedButton.icon(
                                     style: ElevatedButton.styleFrom(
@@ -202,13 +219,13 @@ class _ImagePreviewState extends State<ImagePreview> {
                                     },
                                     icon: Icon(
                                       Icons.send_to_mobile_sharp,
-                                      color: Colors.white,
+                                      color: Colors.blueGrey,
                                     ),
                                     label: Text(
-                                      'set to Both',
+                                      'bothscreen',
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
-                                    ))
+                                          fontSize: 20, color: Colors.blueGrey),
+                                    )),
                               ],
                             ),
                           ),
@@ -218,7 +235,7 @@ class _ImagePreviewState extends State<ImagePreview> {
                 child: Icon(
                   Icons.download,
                   size: 30,
-                  color: Colors.blueGrey,
+                  color: Colors.white,
                 ),
               ),
             ),
