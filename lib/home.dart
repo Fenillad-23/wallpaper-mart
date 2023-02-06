@@ -8,6 +8,8 @@ import 'package:wallpaper_mart/imgPreview.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import 'model/images.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -16,7 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late List wallpapers;
+  wallpapers? wallpaper;
   int i = 1;
   bool dataLoaded = false;
   bool imgloaded = false;
@@ -34,33 +36,29 @@ class _HomeState extends State<Home> {
     dynamic response = await http.get(
         Uri.parse("https://api.pexels.com/v1/curated?per_page=79&page=$i"),
         headers: {"Authorization": API_KEY});
+
     if (response.statusCode == 200 || response.statusCode == "200") {
-      Map<String, dynamic> mappedData = json.decode(response.body);
-      wallpapers = mappedData['photos'];
-      wallpapers.shuffle();
+      wallpaper = wallpapers.fromJson(json.decode(response.body));
       dataLoaded = true;
       setState(() {
         i++;
       });
-      print('\x1b[93m --- $wallpapers');
+      print('\x1b[93m --- $wallpaper');
     }
   }
 
   fetchCategoryWallpapers() async {
     dataLoaded = false;
-    wallpapers.clear();
     dynamic response = await http.get(
         Uri.parse("https://api.pexels.com/v1/search?query=$query&per_page=79"),
         headers: {"Authorization": API_KEY});
     if (response.statusCode == 200 || response.statusCode == "200") {
-      Map<String, dynamic> mappedData = json.decode(response.body);
-      wallpapers = mappedData['photos'];
-      wallpapers.shuffle();
+      wallpaper = wallpapers.fromJson(json.decode(response.body));
       dataLoaded = true;
       setState(() {
-        // i++;
+        i++;
       });
-      print('\x1b[93m --- $wallpapers');
+      // print('\x1b[93m --- $wallpapers');
     }
   }
 
@@ -86,7 +84,6 @@ class _HomeState extends State<Home> {
                   child: Column(
                     children: [
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -263,15 +260,18 @@ class _HomeState extends State<Home> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: ((context) => ImagePreview(
-                                          url: wallpapers[index]['src']
-                                              ['portrait'],
-                                          photographer: wallpapers[index]
-                                              ['photographer'])),
+                                          url: wallpaper!
+                                              .photos![index].src!.portrait
+                                              .toString(),
+                                          photographer: wallpaper!
+                                              .photos![index].photographer
+                                              .toString())),
                                     ),
                                   );
                                 },
                                 child: Hero(
-                                  tag: wallpapers[index]['src']['portrait'],
+                                  tag: wallpaper!.photos![index].src!.portrait
+                                      .toString(),
                                   child: Card(
                                     elevation: 0.0,
                                     shape: RoundedRectangleBorder(
@@ -280,8 +280,8 @@ class _HomeState extends State<Home> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: CachedNetworkImage(
-                                        imageUrl: wallpapers[index]['src']
-                                                ['portrait']
+                                        imageUrl: wallpaper!
+                                            .photos![index].src!.portrait
                                             .toString(),
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
