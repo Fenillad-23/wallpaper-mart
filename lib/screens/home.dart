@@ -216,19 +216,9 @@ class _HomeState extends State<Home> {
                                           .portrait
                                           .toString(),
                                     ]);
-                                    // Navigator.of(context).push(
-                                    //   MaterialPageRoute(
-                                    //     builder: ((context) => ImagePreview(
-                                    //         url: controller.wallpaper!
-                                    //             .photos![index].src!.portrait
-                                    //             .toString(),
-                                    //         photographer: controller.wallpaper!
-                                    //             .photos![index].photographer
-                                    //             .toString())),
-                                    //   ),
-                                    // );
                                   },
                                   child: Hero(
+                                    transitionOnUserGestures: true,
                                     tag: controller
                                         .wallpaper!.photos![index].src!.portrait
                                         .toString(),
