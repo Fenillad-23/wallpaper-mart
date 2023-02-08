@@ -38,7 +38,7 @@ dependencies:
   async_wallpaper: ^2.0.1
   fluttertoast: ^8.1.2
   connectivity_checker:
-
+  get:
 dev_dependencies:
   flutter_test:
     sdk: flutter

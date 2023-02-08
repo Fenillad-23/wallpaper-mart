@@ -1,102 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:async_wallpaper/async_wallpaper.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:wallpaper_mart/controller/imagepreviewController.dart';
 
 class ImagePreview extends StatefulWidget {
-  final String url, photographer;
-  const ImagePreview(
-      {super.key, required this.photographer, required this.url});
+  const ImagePreview({super.key});
 
   @override
   State<ImagePreview> createState() => _ImagePreviewState();
 }
 
 class _ImagePreviewState extends State<ImagePreview> {
+  var data = Get.arguments;
+  String url = Get.arguments[0];
   void initState() {
     super.initState();
   }
 
-  var result;
-  String wallpaper_set = 'not set';
-
-  void setWallpaper(String imgUrl) async {
-    setState(() {
-      wallpaper_set = 'loading';
-    });
-    try {
-      var imgFile = await DefaultCacheManager().getSingleFile(widget.url);
-      var filePath = imgFile.path;
-      result = await AsyncWallpaper.setWallpaperFromFile(
-          filePath: filePath,
-          wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
-          goToHome: true);
-      if (!mounted) {
-        return;
-      } else {
-        setState(() {
-          // set = print(set);
-          wallpaper_set = "done";
-          Fluttertoast.showToast(msg: 'wallpaper has been set to home screen');
-        });
-      }
-    } on PlatformException {
-      Fluttertoast.showToast(msg: "WALLPAPER SET FAILED");
-    }
-  }
-
-  void setlockscreenWallpaper(String imgUrl) async {
-    setState(() {
-      wallpaper_set = 'loading';
-    });
-    try {
-      var imgFile = await DefaultCacheManager().getSingleFile(widget.url);
-      var filePath = imgFile.path;
-      result = await AsyncWallpaper.setWallpaperFromFile(
-          filePath: filePath,
-          wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
-          goToHome: true);
-      if (!mounted) {
-        return;
-      } else {
-        setState(() {
-          // set = print(set);
-          wallpaper_set = "done";
-          Fluttertoast.showToast(msg: 'wallpaper has been set to lock screen');
-        });
-      }
-    } on PlatformException {
-      Fluttertoast.showToast(msg: "WALLPAPER SET FAILED");
-    }
-  }
-
-  void setbothscreenWallpaper(String imgUrl) async {
-    setState(() {
-      wallpaper_set = 'loading';
-    });
-    try {
-      var imgFile = await DefaultCacheManager().getSingleFile(widget.url);
-      var filePath = imgFile.path;
-      result = await AsyncWallpaper.setWallpaperFromFile(
-          filePath: filePath,
-          wallpaperLocation: AsyncWallpaper.BOTH_SCREENS,
-          goToHome: true);
-      if (!mounted) {
-        return;
-      } else {
-        setState(() {
-          // set = print(set);
-          wallpaper_set = "done";
-          Fluttertoast.showToast(msg: 'wallpaper has been set to both screen');
-        });
-      }
-    } on PlatformException {
-      Fluttertoast.showToast(msg: "WALLPAPER SET FAILED");
-    }
-  }
+  ImagePreviewController imagePreviewController =
+      Get.put(ImagePreviewController());
 
   @override
   Widget build(BuildContext context) {
@@ -104,13 +28,13 @@ class _ImagePreviewState extends State<ImagePreview> {
       body: Stack(
         children: [
           Hero(
-            tag: widget.url,
+            tag: url,
             child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: widget.url,
+                  imageUrl: url,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => const Center(
                     child: GFLoader(
@@ -177,7 +101,8 @@ class _ImagePreviewState extends State<ImagePreview> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        setWallpaper(widget.url.toString());
+                                        imagePreviewController
+                                            .setWallpaper(url.toString());
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
@@ -190,8 +115,9 @@ class _ImagePreviewState extends State<ImagePreview> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        setlockscreenWallpaper(
-                                            widget.url.toString());
+                                        imagePreviewController
+                                            .setlockscreenWallpaper(
+                                                url.toString());
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
@@ -204,8 +130,9 @@ class _ImagePreviewState extends State<ImagePreview> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        setbothscreenWallpaper(
-                                            widget.url.toString());
+                                        imagePreviewController
+                                            .setbothscreenWallpaper(
+                                                url.toString());
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(

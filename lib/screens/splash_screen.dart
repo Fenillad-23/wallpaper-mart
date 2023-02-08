@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'home.dart';
 
@@ -11,23 +12,32 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
   @override
   void initState() {
+    controller =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    animation = Tween<double>(begin: 0, end: 75).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
+    controller.forward();
     super.initState();
     Timer(const Duration(seconds: 5), navigator);
   }
 
   void navigator() async {
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: ((context) => const Home())));
+    Get.to(Home());
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent[100],
+      // backgroundColor: Colors.blueAccent[100],
       resizeToAvoidBottomInset: true,
       body: Center(
         child: SizedBox(
@@ -38,8 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 370,
             ),
             Container(
-              height: 72,
-              width: 72,
+              height: animation.value,
+              width: animation.value,
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.white10),
