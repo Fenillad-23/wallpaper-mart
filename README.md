@@ -1,4 +1,4 @@
-# wallpaper_mart
+# WallyMart
 
 A new Flutter project.
 

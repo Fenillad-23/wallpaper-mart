@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:optimized_cached_image/optimized_cached_image.dart';
-import 'package:wallpaper_mart/controller/imagepreviewController.dart';
+import 'package:WallyMart/controller/imagepreviewController.dart';
 
 class ImagePreview extends StatefulWidget {
   const ImagePreview({super.key});

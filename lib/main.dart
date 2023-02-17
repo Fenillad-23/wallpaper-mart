@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wallpaper_mart/screens/splash_screen.dart';
+import 'package:WallyMart/screens/splash_screen.dart';
 import 'package:connectivity_checker/connectivity_checker.dart';
 
 void main() {

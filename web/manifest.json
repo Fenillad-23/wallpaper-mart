@@ -1,6 +1,6 @@
 {
-    "name": "wallpaper_mart",
-    "short_name": "wallpaper_mart",
+    "name": "WallyMart",
+    "short_name": "WallyMart",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

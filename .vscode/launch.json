@@ -6,18 +6,18 @@
     "configurations": [
         
         {
-            "name": "wallpaper_mart",
+            "name": "WallyMart",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "wallpaper_mart (profile mode)",
+            "name": "WallyMart (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "wallpaper_mart (release mode)",
+            "name": "WallyMart (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
