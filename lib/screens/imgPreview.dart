@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:wallpaper_mart/controller/imagepreviewController.dart';
 
 class ImagePreview extends StatefulWidget {
@@ -19,6 +19,12 @@ class _ImagePreviewState extends State<ImagePreview> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    imagePreviewController.dispose();
+  }
+
   ImagePreviewController imagePreviewController =
       Get.put(ImagePreviewController());
 
@@ -33,7 +39,7 @@ class _ImagePreviewState extends State<ImagePreview> {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: ClipRRect(
-                child: CachedNetworkImage(
+                child: OptimizedCacheImage(
                   imageUrl: url,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => const Center(

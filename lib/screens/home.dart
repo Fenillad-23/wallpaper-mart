@@ -7,6 +7,7 @@ import 'package:wallpaper_mart/controller/homeController.dart';
 import 'package:wallpaper_mart/screens/imgPreview.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,6 +18,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   homePageController controller = Get.put(homePageController());
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +58,7 @@ class _HomeState extends State<Home> {
                         SizedBox(
                           width: double.infinity,
                           child: SingleChildScrollView(
+                            physics: BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
@@ -203,6 +210,7 @@ class _HomeState extends State<Home> {
                         Flexible(
                           child: GridView.builder(
                             itemCount: 79,
+                            physics: BouncingScrollPhysics(),
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2, childAspectRatio: 0.7),
@@ -229,7 +237,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(20),
-                                        child: CachedNetworkImage(
+                                        child: OptimizedCacheImage(
                                           imageUrl: controller.wallpaper!
                                               .photos![index].src!.portrait
                                               .toString(),
