@@ -39,7 +39,7 @@ dependencies:
   fluttertoast: ^8.1.2
   connectivity_checker:
   get:
-  optimized_cached_image: ^3.0.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

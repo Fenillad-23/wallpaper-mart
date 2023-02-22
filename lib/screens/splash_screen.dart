@@ -26,11 +26,15 @@ class _SplashScreenState extends State<SplashScreen>
       });
     controller.forward();
     super.initState();
-    Timer(const Duration(seconds: 5), navigator);
+    Timer(const Duration(seconds: 3), navigator);
   }
 
   void navigator() async {
-    Get.to(Home());
+    Get.to(
+      Home(),
+      curve: Curves.easeInExpo,
+      duration: Duration(seconds: 3),
+    );
     setState(() {});
   }
 

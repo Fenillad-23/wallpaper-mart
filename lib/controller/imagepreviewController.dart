@@ -6,6 +6,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 class ImagePreviewController extends GetxController {
   var result;
   RxString wallpaper_set = 'not set'.obs;
+
   void setWallpaper(String imgUrl) async {
     wallpaper_set.update((val) {
       wallpaper_set = 'loading'.obs;
