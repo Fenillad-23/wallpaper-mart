@@ -215,6 +215,13 @@ class _HomeState extends State<Home> {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                                 child: CachedNetworkImage(
+                                                    memCacheHeight: 500,
+                                                    memCacheWidth: 500,
+                                                    fadeInCurve:
+                                                        Curves.easeInCubic,
+                                                    fadeInDuration:
+                                                        const Duration(
+                                                            milliseconds: 1500),
                                                     filterQuality:
                                                         FilterQuality.high,
                                                     imageUrl: controller
@@ -223,7 +230,7 @@ class _HomeState extends State<Home> {
                                                         .src!
                                                         .portrait
                                                         .toString(),
-                                                    fit: BoxFit.cover,
+                                                    fit: BoxFit.fill,
                                                     placeholder: (context,
                                                             url) =>
                                                         const Center(

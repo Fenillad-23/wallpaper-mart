@@ -38,7 +38,9 @@ class _ImagePreviewState extends State<ImagePreview> {
           child: ClipRRect(
               child: CachedNetworkImage(
                   imageUrl: url,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
+                  fadeInCurve: Curves.easeIn,
+                  fadeInDuration: Duration(milliseconds: 1500),
                   placeholder: (context, url) => const Center(
                           child: GFLoader(
                         type: GFLoaderType.ios,
