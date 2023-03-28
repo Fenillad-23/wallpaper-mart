@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
@@ -37,15 +38,19 @@ class homePageController extends GetxController {
   }
 
   Widget ad() {
+    Timer(Duration(seconds: 10), () {
+      _bannerAd.dispose();
+      loaded.value =false;
+      loadad();});
     return loaded.value
         ? Container(
-            width: 320,
-            height: 50,
+            width:double.infinity,
+            height: 70,
             child: AdWidget(
               ad: _bannerAd,
             ),
           )
-        : SizedBox();
+        : SizedBox(height: 70,);
   }
 
   fetchWallpapers() async {
