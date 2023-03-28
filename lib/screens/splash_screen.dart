@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: Colors.blueAccent[100],
+         backgroundColor: Colors.black26,
         resizeToAvoidBottomInset: true,
         body: SizedBox(
             height: MediaQuery.of(context).size.height,
@@ -49,8 +49,8 @@ class _SplashScreenState extends State<SplashScreen>
                   alignment: Alignment.center,
                   transformAlignment: Alignment.topCenter,
                   child: Container(
-                      height: 70,
-                      width: 70,
+                      height: 100,
+                      width: 100,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(color: Colors.white10),

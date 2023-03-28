@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "738905391183",
+    "project_id": "wally-mart-f722a",
+    "storage_bucket": "wally-mart-f722a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738905391183:android:53cbf4252d8d6205f36a3a",
+        "android_client_info": {
+          "package_name": "com.example.WallyMart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738905391183-lragvhba021irjnap8hqvassgq5flmsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK3kuj_wCGldIxmqcSomgh6XlyimJ7xrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738905391183-lragvhba021irjnap8hqvassgq5flmsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "738905391183-tsl7ofqdvi2efjbu5mrh7jcr0n7d0a6d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.wallpaperMart"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

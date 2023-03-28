@@ -3,10 +3,9 @@ import 'package:connectivity_checker/connectivity_checker.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:WallyMart/controller/homeController.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:lottie/lottie.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -17,7 +16,7 @@ class Home extends StatelessWidget {
       builder: (_) {
         return Scaffold(
           resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.white.withOpacity(1),
+          backgroundColor: Colors.black12,
           body: ConnectivityWidgetWrapper(
             child: Obx(
               (() => _.dataLoaded.value
@@ -37,165 +36,171 @@ class Home extends StatelessWidget {
                             Row(children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text('category',
+                                child: Text('Category',
                                     style: TextStyle(
                                         fontSize: 20,
-                                        fontWeight: FontWeight.w600)),
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white)),
                               )
                             ]),
                             SizedBox(
-                                width: double.infinity,
-                                child: SingleChildScrollView(
-                                    physics: BouncingScrollPhysics(),
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(children: [
-                                      GestureDetector(
-                                          onTap: () {
-                                            _.setQuery('person');
-                                            // setState(() {
-                                            //   controller.query = 'person'.obs;
-                                            // });
-                                            // controller.fetchCategoryWallpapers();
-                                            // print(controller.query);
-                                          },
-                                          child: SizedBox(
+                              width: double.infinity,
+                              child: SingleChildScrollView(
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                child: Row(children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      _.setQuery('Person');
+                                      // setState(() {
+                                      //   controller.query = 'person'.obs;
+                                      // });
+                                      // controller.fetchCategoryWallpapers();
+                                      // print(controller.query);
+                                    },
+                                    child: SizedBox(
+                                      height: 90,
+                                      width: 140,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: Image.asset(
+                                              'assets/images/person.jpg',
+                                              fit: BoxFit.cover,
                                               height: 90,
-                                              width: 140,
-                                              child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      child: Image.asset(
-                                                          'assets/images/person.jpg',
-                                                          fit: BoxFit.cover,
-                                                          height: 90,
-                                                          width: double
-                                                              .infinity))))),
-                                      GestureDetector(
-                                          onTap: () {
-                                            _.setQuery('programming');
-                                            // setState(() {
-                                            //   controller.query = 'programming'.obs;
-                                            // });
-                                            // controller.fetchCategoryWallpapers();
-                                            //
-                                            // print(controller.query);
-                                          },
-                                          child: SizedBox(
-                                              height: 95,
-                                              width: 140,
-                                              child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      child: Image.asset(
-                                                          'assets/images/programming.jpg',
-                                                          fit: BoxFit.cover,
-                                                          height: 90,
-                                                          width: double
-                                                              .infinity))))),
-                                      GestureDetector(
-                                          onTap: () {
-                                            _.setQuery('nature');
-                                            // setState(() {
-                                            //   controller.query = 'nature'.obs;
-                                            // });
-                                            // controller.fetchCategoryWallpapers();
-                                          },
-                                          child: SizedBox(
-                                              height: 95,
-                                              width: 140,
-                                              child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      child: Image.asset(
-                                                          'assets/images/nature.jpg',
-                                                          fit: BoxFit.cover,
-                                                          height: 90,
-                                                          width: double
-                                                              .infinity))))),
-                                      GestureDetector(
-                                          onTap: () {
-                                            _.setQuery('cars');
-                                            // setState(() {
-                                            //   controller.query = 'cars'.obs;
-                                            // });
-                                            // controller.fetchCategoryWallpapers();
-                                          },
-                                          child: SizedBox(
-                                              height: 95,
-                                              width: 140,
-                                              child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      child: Image.asset(
-                                                          'assets/images/cars.jpg',
-                                                          fit: BoxFit.cover,
-                                                          height: 90,
-                                                          width: double
-                                                              .infinity))))),
-                                      GestureDetector(
-                                          onTap: () {
-                                            _.setQuery('indian god');
-                                            // setState(() {
-                                            //   controller.query = 'indian god'.obs;
-                                            // });
-                                            // controller.fetchCategoryWallpapers();
-                                            // print(controller.query);
-                                          },
-                                          child: SizedBox(
-                                              height: 95,
-                                              width: 140,
-                                              child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      child: Image.asset(
-                                                          'assets/images/god.jpg',
-                                                          fit: BoxFit.cover,
-                                                          height: 90,
-                                                          width: double
-                                                              .infinity)))))
-                                    ]))),
+                                              width: double.infinity),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _.setQuery('Programming');
+                                      // setState(() {
+                                      //   controller.query = 'programming'.obs;
+                                      // });
+                                      // controller.fetchCategoryWallpapers();
+                                      //
+                                      // print(controller.query);
+                                    },
+                                    child: SizedBox(
+                                      height: 95,
+                                      width: 140,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: Image.asset(
+                                              'assets/images/programming.jpg',
+                                              fit: BoxFit.cover,
+                                              height: 90,
+                                              width: double.infinity),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                        _.setQuery('Nature');
+                                        // setState(() {
+                                        //   controller.query = 'nature'.obs;
+                                        // });
+                                        // controller.fetchCategoryWallpapers();
+                                      },
+                                      child: SizedBox(
+                                          height: 95,
+                                          width: 140,
+                                          child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: Image.asset(
+                                                      'assets/images/nature.jpg',
+                                                      fit: BoxFit.cover,
+                                                      height: 90,
+                                                      width:
+                                                          double.infinity))))),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _.setQuery('cars');
+                                      // setState(() {
+                                      //   controller.query = 'cars'.obs;
+                                      // });
+                                      // controller.fetchCategoryWallpapers();
+                                    },
+                                    child: SizedBox(
+                                      height: 95,
+                                      width: 140,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: Image.asset(
+                                              'assets/images/cars.jpg',
+                                              fit: BoxFit.cover,
+                                              height: 90,
+                                              width: double.infinity),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _.setQuery('Indian god');
+                                      // setState(() {
+                                      //   controller.query = 'indian god'.obs;
+                                      // });
+                                      // controller.fetchCategoryWallpapers();
+                                      // print(controller.query);
+                                    },
+                                    child: SizedBox(
+                                      height: 95,
+                                      width: 140,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: Image.asset(
+                                              'assets/images/god.jpg',
+                                              fit: BoxFit.cover,
+                                              height: 90,
+                                              width: double.infinity),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                              ),
+                            ),
                             SizedBox(height: 2),
                             Row(children: [
                               Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text('${_.query} wallpapers',
+                                  child: Text('${_.query} Wallpapers',
                                       style: TextStyle(
                                           fontSize: 20,
-                                          fontWeight: FontWeight.w600)))
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white)))
                             ]),
                             Flexible(
                               child: GridView.builder(
@@ -226,6 +231,7 @@ class Home extends StatelessWidget {
                                       },
                                       child: Card(
                                         elevation: 0.0,
+                                        color: Colors.black26,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -246,8 +252,7 @@ class Home extends StatelessWidget {
                                             fit: BoxFit.fill,
                                             placeholder: (context, url) =>
                                                 Center(
-                                              child: Image.asset(
-                                                  'assets/images/placeholder.png'),
+                                              child: Container(color: Colors.black26,child: Lottie.asset('assets/images/secondaryloader.json',animate: true,height: 80,width: 80)),
                                             ),
                                           ),
                                         ),
@@ -261,14 +266,12 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     )
-                  : const Center(
-                      child: GFLoader(
-                        type: GFLoaderType.square,
-                      ),
+                  :  Center(
+                      child: Lottie.asset('assets/images/primaryloader.json',animate: true,height: 80,width: 80),
                     )),
             ),
           ),
-          bottomNavigationBar: Obx(() => homePageController().ad()),
+          bottomNavigationBar: Obx(() => _.ad()),
         );
       },
     );
