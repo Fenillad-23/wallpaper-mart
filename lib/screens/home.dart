@@ -6,6 +6,7 @@ import 'package:WallyMart/controller/homeController.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:lottie/lottie.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -252,7 +253,13 @@ class Home extends StatelessWidget {
                                             fit: BoxFit.fill,
                                             placeholder: (context, url) =>
                                                 Center(
-                                              child: Container(color: Colors.black26,child: Lottie.asset('assets/images/secondaryloader.json',animate: true,height: 80,width: 80)),
+                                              child: Container(
+                                                  color: Colors.black26,
+                                                  child: Lottie.asset(
+                                                      'assets/images/secondaryloader.json',
+                                                      animate: true,
+                                                      height: 80,
+                                                      width: 80)),
                                             ),
                                           ),
                                         ),
@@ -266,8 +273,9 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     )
-                  :  Center(
-                      child: Lottie.asset('assets/images/primaryloader.json',animate: true,height: 80,width: 80),
+                  : Center(
+                      child: Lottie.asset('assets/images/primaryloader.json',
+                          animate: true, height: 80, width: 80),
                     )),
             ),
           ),

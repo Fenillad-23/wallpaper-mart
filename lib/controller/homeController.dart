@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 import '../screens/imgPreview.dart';
 
 class homePageController extends GetxController {
-  wallpapers? wallpaper;
+  Images? wallpaper;
   RxInt i = 1.obs;
   RxString query = ''.obs;
   RxBool dataLoaded = false.obs;
@@ -40,17 +40,20 @@ class homePageController extends GetxController {
   Widget ad() {
     Timer(Duration(seconds: 10), () {
       _bannerAd.dispose();
-      loaded.value =false;
-      loadad();});
+      loaded.value = false;
+      loadad();
+    });
     return loaded.value
         ? Container(
-            width:double.infinity,
+            width: double.infinity,
             height: 70,
             child: AdWidget(
               ad: _bannerAd,
             ),
           )
-        : SizedBox(height: 70,);
+        : SizedBox(
+            height: 70,
+          );
   }
 
   fetchWallpapers() async {
@@ -59,7 +62,7 @@ class homePageController extends GetxController {
         headers: {"Authorization": API_KEY});
 
     if (response.statusCode == 200 || response.statusCode == "200") {
-      wallpaper = wallpapers.fromJson(json.decode(response.body));
+      wallpaper = Images.fromJson(json.decode(response.body));
       dataLoaded.update((val) {
         dataLoaded = true.obs;
       });
@@ -76,7 +79,7 @@ class homePageController extends GetxController {
         Uri.parse("https://api.pexels.com/v1/search?query=$query&per_page=79"),
         headers: {"Authorization": API_KEY});
     if (response.statusCode == 200 || response.statusCode == "200") {
-      wallpaper = wallpapers.fromJson(json.decode(response.body));
+      wallpaper = Images.fromJson(json.decode(response.body));
       dataLoaded.update((val) {
         dataLoaded = true.obs;
       });
